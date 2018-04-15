@@ -48,7 +48,7 @@ RSpec.describe 'User CRUD', type: :request do
       {
         name: 'Jhon Doe',
         address: 'test',
-        dob: Time.new,
+        dob: 'October 3rd 1991',
         position: 'test'
       }
     end
