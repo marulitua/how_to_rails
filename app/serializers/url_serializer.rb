@@ -1,7 +1,7 @@
 require './lib/basex.rb'
 
 class UrlSerializer < ActiveModel::Serializer
-  attributes :short
+  attributes :short, :origin, :id
 
   def short
     Basex.encode(object.id)
