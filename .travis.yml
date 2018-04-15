@@ -3,7 +3,8 @@ rvm:
 - 2.3.0
 
 before_install:
-  - bundle install
+  - gem install rails bundler
+  - bundle
 
 script:
   - rspec
