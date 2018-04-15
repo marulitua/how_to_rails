@@ -2,5 +2,5 @@ Rails.application.routes.draw do
   resources :users do
     resources :experiences
   end
-  resources :urls
+  resources :urls, only: [:create, :show, :index, :destroy]
 end

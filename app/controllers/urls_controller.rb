@@ -5,7 +5,7 @@ class UrlsController < ApplicationController
 
   def index
     @urls = Url.all
-    render json: @urls, include: 'name'
+    render json: @urls
     #json_response(@urls)
   end
 
@@ -15,12 +15,8 @@ class UrlsController < ApplicationController
   end
 
   def show
-    json_response(@url)
-  end
-
-  def update
-    @url.update(url_params)
-    head :no_content
+    render json: @url, include: 'origin'
+    #json_response(@url)
   end
 
   def destroy
