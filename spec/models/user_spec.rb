@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'models/concerns/contactable_spec'
 
 RSpec.describe User, type: :model do
   it { should have_many(:experiences).dependent(:destroy) }
