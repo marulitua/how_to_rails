@@ -3,5 +3,7 @@ class Reference < ApplicationRecord
 
   belongs_to :user
 
+  accepts_nested_attributes_for :contacts
+
   validates_presence_of :name, :organization, :location, :position
 end
