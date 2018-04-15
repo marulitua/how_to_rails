@@ -180,6 +180,128 @@
           }
         }
       }
+    },
+    "/urls": {
+      "get": {
+        "summary": "Get list of urls",
+        "description": "Get Users\n",
+        "tags": [
+          "Manage URL"
+        ],
+        "responses": {
+          "200": {
+            "description": "Request Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserCompact"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create new short url",
+        "description": "Add new url",
+        "tags": [
+          "Manage URL"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "password",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request Success",
+            "schema": {
+              "$ref": "#/definitions/UserObject"
+            }
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/urls/{short}": {
+      "get": {
+        "summary": "Get an url",
+        "description": "View details of an url\n",
+        "tags": [
+          "Manage URL"
+        ],
+        "parameters": [
+          {
+            "name": "short",
+            "type": "string",
+            "description": "User's identifier",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request Success",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an url",
+        "description": "Do soft delete",
+        "tags": [
+          "Manage URL"
+        ],
+        "parameters": [
+          {
+            "name": "short",
+            "type": "string",
+            "description": "Url's code identifier",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
