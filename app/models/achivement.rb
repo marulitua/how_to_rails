@@ -1,3 +1,5 @@
 class Achivement < ApplicationRecord
-  belongs_to :experiences
+  belongs_to :experience
+
+  validates_presence_of :item
 end

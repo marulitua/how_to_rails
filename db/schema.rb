@@ -14,17 +14,20 @@ ActiveRecord::Schema.define(version: 20180414212236) do
 
   create_table "achivements", force: :cascade do |t|
     t.string   "item"
-    t.integer  "experiences_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["experiences_id"], name: "index_achivements_on_experiences_id"
+    t.integer  "experience_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["experience_id"], name: "index_achivements_on_experience_id"
   end
 
   create_table "contacts", force: :cascade do |t|
     t.string   "key"
     t.string   "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "contactable_type"
+    t.integer  "contactable_id"
+    t.index ["contactable_type", "contactable_id"], name: "index_contacts_on_contactable_type_and_contactable_id"
   end
 
   create_table "educations", force: :cascade do |t|

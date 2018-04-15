@@ -7,5 +7,4 @@ RSpec.describe Reference, type: :model do
   it { should validate_presence_of(:position) }
 
   it { should belong_to(:user) }
-  it { should have_many(:contacts) }
 end
