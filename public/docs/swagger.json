@@ -1,0 +1,279 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Erwin Maruli Tua Pakpahan Resume API",
+    "description": "Get to know more about erwin",
+    "version": "1.0.0"
+  },
+  "schemes": [
+    "http"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/x-www-form-urlencoded"
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Get list of users",
+        "description": "Get Users\n",
+        "tags": [
+          "Manage User"
+        ],
+        "responses": {
+          "200": {
+            "description": "Request Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserCompact"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create new User Account",
+        "description": "Add new user",
+        "tags": [
+          "Manage User"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "type": "string",
+            "in": "query",
+            "required": true
+          },
+          {
+            "name": "password",
+            "type": "string",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request Success",
+            "schema": {
+              "$ref": "#/definitions/UserObject"
+            }
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "summary": "Get an user",
+        "description": "View details of an user\n",
+        "tags": [
+          "Manage User"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "type": "integer",
+            "description": "User's identifier",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request Success",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an user",
+        "description": "Update an user\n",
+        "tags": [
+          "Manage User"
+        ],
+        "parameters": [
+          {
+            "name": "employee_code",
+            "type": "string",
+            "description": "Employee's code in organization service",
+            "in": "query"
+          },
+          {
+            "name": "password",
+            "type": "string",
+            "description": "user password",
+            "in": "query"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "description": "user's password",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request Success",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an user",
+        "description": "Do soft delete",
+        "tags": [
+          "Manage User"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "type": "string",
+            "description": "User's code identifier",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized request"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "string",
+          "description": "respon description"
+        }
+      }
+    },
+    "UserObject": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/UserCompact"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Unique code to identify a user"
+        },
+        "company": {
+          "type": "string",
+          "description": "An user belong to company"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User's email"
+        },
+        "employee_code": {
+          "type": "string",
+          "description": "User's Employee Code"
+        },
+        "status": {
+          "type": "string",
+          "description": "User activation status"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "Employee's First Name"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "Employee's Last Name"
+        },
+        "sex": {
+          "type": "string",
+          "description": "User's sex orientation"
+        }
+      }
+    },
+    "UserCompact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "User's id"
+        },
+        "about": {
+          "type": "string",
+          "description": "User's description"
+        },
+        "address": {
+          "type": "string",
+          "description": "User's address"
+        },
+        "dob": {
+          "type": "string",
+          "description": "User's DOB"
+        },
+        "enthusiast": {
+          "type": "string",
+          "description": "Enthusiast about"
+        },
+        "name": {
+          "type": "string",
+          "description": "User's name"
+        },
+        "quote": {
+          "type": "string",
+          "description": "User's favorite quote"
+        },
+        "position": {
+          "type": "string",
+          "description": "Looking for position"
+        }
+      }
+    }
+  }
+}
